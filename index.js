@@ -1,13 +1,10 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const fs = require('fs');
 
 const app = express();
 const port = 3002; // Puedes cambiar el puerto si es necesario
 
-app.use(bodyParser.json());
-
-app.post('/productos', (req, res) => {
+app.get('/productos', (req, res) => {
   try {
     const productosData = fs.readFileSync('productos.json', 'utf8');
     const productos = JSON.parse(productosData);
@@ -22,4 +19,3 @@ app.post('/productos', (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
 });
-
